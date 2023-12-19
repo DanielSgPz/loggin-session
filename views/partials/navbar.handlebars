@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+           <img src="https://i.pinimg.com/736x/a1/45/c2/a145c24677bf3957d200bf8a7a6fc9ff.jpg" height="40" alt="Logo"
+                loading="lazy" style="margin-top: -1px;" />
+        </a>
+
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav me-auto">
+                <a class="nav-link" href="/productos">Productos</a>
+            </div>
+            <div class="navbar-nav ms-auto">
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{user.nombre}} <span class="badge bg-secondary">{{user.level}}</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        {{#if isAdmin}}
+                        <li><a class="dropdown-item" href="/profile">Panel de Administrador</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        {{/if}}
+                        <li><a class="dropdown-item" href="/profile">Mi Perfil</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+
+
+{{!-- <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/"> <img src="/src/public/images/Ice-cream-shop-logo.png" height="16" alt="Logo"
+                loading="lazy" style="margin-top: -1px;" />
+                </a>
+
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="justify-content: space-between">
+            <div class="navbar-nav">
+                <a class="nav-link" href="/productos">Productos</a>
+            </div>
+            <div class="navbar-nav" style="text-align: right;">
+                <a class="nav-link" href="#">Bienvenido {{user.nombre}} <span
+                        class="badge text-bg-secondary">{{user.level}}</span></a>
+                {{#if isAdmin}}
+                <a class="nav-link" href="/profile">Panel de Administrador</a>
+                {{/if}}
+                <a class="nav-link" href="/profile">Mi Perfil</a>
+            </div>
+        </div>
+    </div>
+</nav> --}}

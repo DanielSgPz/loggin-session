@@ -1,0 +1,36 @@
+{{>navbar}}
+
+<div class="container mt-5">
+    <div class="card">
+        <h5 class="card-header text-center">Nuestros Productos</h5>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Categoría</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Stock</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="contenedorProductos">
+                        {{#each results.payload}}
+                        <tr>
+                            <td>{{this.title}}</td>
+                            <td>{{this.description}}</td>
+                            <td>{{this.category}}</td>
+                            <td>{{this.price}}</td>
+                            <td>{{this.stock}}</td>
+                            <td><button class="btn btn-primary">Agregar al Carrito</button></td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {{>pagebar}}
+    </div>
+</div>

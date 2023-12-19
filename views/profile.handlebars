@@ -1,0 +1,36 @@
+{{>navbar}}
+
+<div class="container mt-5">
+  <div class="card mx-auto" style="max-width: 500px;">
+    <h5 class="card-header text-center">Mi Perfil</h5>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <tbody>
+            <tr>
+              <th scope="row">Usuario</th>
+              <td>{{user.email}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Nombre</th>
+              <td>{{user.nombre}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Apellido</th>
+              <td>{{user.apellido}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Nivel de Usuario</th>
+              <td>{{user.level}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="text-center">
+        <form action="/logout" method="post">
+          <button type="submit" class="btn btn-primary">Cerrar Sesión</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
