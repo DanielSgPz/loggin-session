@@ -3,7 +3,7 @@ import { randomUUID } from "crypto"
 
 const coleccion = 'Users'
 
-const usuarioSchema = new mongoose.Schema({
+const schema = new mongoose.Schema({
     _id: { type: String, default: randomUUID },
     email: { type: String, unique: true, require: true },
     password: { type: String, require: true },
@@ -16,4 +16,4 @@ const usuarioSchema = new mongoose.Schema({
     versionKey: false,
 })
 
-export const Usuario = mongoose.model(coleccion, usuarioSchema)
+export const Usuario = mongoose.model(coleccion, schema)
