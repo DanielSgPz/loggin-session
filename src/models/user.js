@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { randomUUID } from "crypto"
 
-const coleccion = 'Users'
+const collecion = 'Users'
 
 const schema = new mongoose.Schema({
     _id: { type: String, default: randomUUID },
@@ -16,4 +16,4 @@ const schema = new mongoose.Schema({
     versionKey: false,
 })
 
-export const Usuario = mongoose.model(coleccion, schema)
+export const Usuario = mongoose.model(collecion, schema)

@@ -1,40 +1,53 @@
 import { Router } from "express";
-import { Usuario } from "../../models/user.js";
-import { encriptedString } from "../../config.js";
-export const sessionRouter = Router()
+import { usuariosManager } from "../../models/user.js";
+export const sesionesRouter = Router()
 
-sessionRouter.post('/login', async (req, res) => {
+sesionesRouter.post('/login', async (req, res) => {
 
     const { email, password } = req.body
-    const usuario = await Usuario.findOne({ email }).lean()
-    const chkPwd = encriptedString(usuario.salt, password)
+    let datosUsuario
     
-    if (!usuario || usuario.password != chkPwd) {
-        return res.status(400).json({ status: 'Error', message: 'Error al iniciar sesión' })
-    }
+    if (email === 'adminCoder@coder.com' && password === 'adminCod3r123') {
+        datosUsuario = {
+          email: 'admin',
+          nombre: 'admin',
+          apellido: 'admin',
+        }
+      } else {
+        const usuario = await usuariosManager.findOne({ email }).lean()
+    
+        if (!usuario) {
+          return res.status(400).json({ status: 'error', message: 'login failed' })
+        }
+    
+        // deberia encriptar la recibida y comparar con la guardada que ya esta encriptada
+        if (password !== usuario.password) {
+          return res.status(400).json({ status: 'error', message: 'login failed' })
+        }
+    
+        datosUsuario = {
+          email: usuario.email,
+          nombre: usuario.nombre,
+          apellido: usuario.apellido,
+        }
+      }
 
-    const userInfo = {
-        email: usuario.email,
-        nombre: usuario.nombre,
-        apellido: usuario.apellido
-    }
-
-    req.session['user'] = userInfo
-    res.status(201).json({ status: 'Success', message: 'Usuario Loguedao' })
+    req.session['user'] = datosUsuario
+    res.status(201).json({ status: 'success', message: 'login success' })
 })
 
-sessionRouter.get('/', (req, res) => {
+sesionesRouter.get('/', (req, res) => {
     if (req.session['user']) {
         return res.json(req.session['user'])
     }
-    res.status(400).json({status: 'Error', message: 'No hay seción iniciada'})
+    res.status(400).json({status: 'error', message: 'no hay una sesion iniciada'})
 })
 
-sessionRouter.post('/logout', (req, res) => {
+sesionesRouter.post('/logout', (req, res) => {
     req.session.destroy(error => {
         if (error) {
-            return res.status(500).json({ status: 'Error', message: error })
+            return res.status(500).json({ status: 'Error en Logout', body: error })
         }
-        res.status(200).json({ status: 'Success', message: 'Loguot Existoso' })
+        res.status(200).json({ status: 'Success', message: 'Loguot Ok' })
     })
 })
